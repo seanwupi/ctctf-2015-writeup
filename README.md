@@ -19,4 +19,4 @@ cmd_multiplayer_recvmap() 中沒收到 '\n' 則可以偽造 map size 造成 buff
 4. 功能 (2) 中輸入空字串時，不會執行 strdup() 但還是會 free()，可造成 double free。
 或利用 (3) 功能預先填充 stack 上的內容，可以進行 House of Spirit 使得 strdup() 拿到 flag 所在的 buffer，洩漏 flag 的內容。
 
-
+其它: snprintf() 中 buffer 長度不足，可以使 flag 超出 buffer，可以依序枚舉 flag 中每個 byte (共 16 * 32 次)

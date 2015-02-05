@@ -9,7 +9,10 @@
 5. cmd_multiplayer_sendmap() 中 getline() 如果直接切掉連線，就不會讀到 '\n'。
 cmd_multiplayer_recvmap() 中沒收到 '\n' 則可以偽造 map size 造成 buffer overflow。
 
-其它: do_die() 中的 format string 漏洞，可以用來洩漏 library 或 stack address
+其它: 
+
++ do_die() 中的 format string 漏洞，可以用來洩漏 library 或 stack address
++ cmd_multiplayer_recvmap() 是使用 UDP，如果 sender 先送 data 另一方再開始 recv，則可以使表示長度的資料遺失 (UDP packets buffer 有上限)，此時可以重新用 comments 送假的長度過去，造成 buffer overflow
 
 ### Casio
 

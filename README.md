@@ -17,6 +17,6 @@ cmd_multiplayer_recvmap() 中沒收到 '\n' 則可以偽造 map size 造成 buff
 2. 功能 (2) 中沒有檢查 expression 是否有餘的 operands，如果 (3) 中執行 "$? 1" 會 return 到輸入的數字
 3. strtok() 在 multithread 時會造成 buffer overflow (>500) 改到 return address (改到 buffer 上)
 4. 功能 (2) 中輸入空字串時，不會執行 strdup() 但還是會 free()，可造成 double free。
-或利用 (3) 功能預先填充 stack 上的內容，可以進行 House of Spirit 把使得 strdup 拿到 flag 所在的 buffer，洩漏 flag 的內容。
+或利用 (3) 功能預先填充 stack 上的內容，可以進行 House of Spirit 使得 strdup() 拿到 flag 所在的 buffer，洩漏 flag 的內容。
 
 
